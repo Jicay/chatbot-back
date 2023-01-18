@@ -3,7 +3,7 @@ COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
 RUN gradle build --no-daemon
 
-FROM eclipse-temurin:17-jdk-alpine
+FROM openjdk:20-ea-17-jdk
 
 EXPOSE 8080
 RUN mkdir /app
