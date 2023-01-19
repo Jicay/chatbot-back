@@ -1,4 +1,4 @@
-package com.ynov.chatbotback;
+package com.ynov.chatbotback.model.request;
 
 import lombok.Data;
 
