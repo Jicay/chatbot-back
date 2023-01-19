@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgres://dpg-cf479jg2i3mtifk71lm0-a:5432/chatbot_e6io
+    url: jdbc:postgresql://dpg-cf479jg2i3mtifk71lm0-a:5432/chatbot_e6io
     username: chatbot_e6io_user
     password: WUwt3x8ukPcWnUvvobz8Pzk8eQlAR6pK
     driver-class-name: org.postgresql.Driver
