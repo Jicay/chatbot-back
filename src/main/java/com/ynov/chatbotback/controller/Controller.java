@@ -25,7 +25,9 @@ public class Controller {
     @PostMapping("/webhook")
     public WebhookResponse matchIntent(@RequestBody WebhookRequest request) {
         log.info("{}", request);
-        return responseService.computeResponse(request);
+        var webhookResponse = responseService.computeResponse(request);
+        log.info("{}", webhookResponse);
+        return webhookResponse;
     }
 
 }
