@@ -2,9 +2,9 @@ package com.ynov.chatbotback.repository;
 
 import java.util.List;
 import java.util.Map;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-@Repository
+@Service
 public class MessageRepository {
 
     private static Map<String, List<String>> messages = Map.of(

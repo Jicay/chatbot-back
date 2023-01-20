@@ -34,6 +34,7 @@ public class ResponseService {
         List<String> messages = messageRepository.findAllByActionAndStep(request.getQueryResult().getAction(), step);
 
         return new WebhookResponse()
+                .setFulfillmentText(messages.stream().findFirst().orElse(""))
                 .setFulfillmentMessages(
                         List.of(new Message()
                                 .setText(new Text()
