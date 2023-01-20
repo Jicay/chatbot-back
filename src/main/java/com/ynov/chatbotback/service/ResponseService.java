@@ -4,11 +4,9 @@ import com.ynov.chatbotback.model.request.WebhookRequest;
 import com.ynov.chatbotback.model.response.Message;
 import com.ynov.chatbotback.model.response.Text;
 import com.ynov.chatbotback.model.response.WebhookResponse;
-import com.ynov.chatbotback.repository.MessageEntity;
 import com.ynov.chatbotback.repository.MessageRepository;
 import com.ynov.chatbotback.repository.Step;
 import java.util.List;
-import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -33,15 +31,13 @@ public class ResponseService {
         if (genre == null) {
             step = Step.GENRE_QUESTION;
         }
-        List<MessageEntity> messages = messageRepository.findAllByActionAndStep(request.getQueryResult().getAction(), step);
+        List<String> messages = messageRepository.findAllByActionAndStep(request.getQueryResult().getAction(), step);
 
         return new WebhookResponse()
                 .setFulfillmentMessages(
                         List.of(new Message()
                                 .setText(new Text()
-                                        .setText(messages.stream()
-                                                .map(MessageEntity::getResponse)
-                                                .collect(Collectors.toList()))))
+                                        .setText(messages)))
                 );
     }
 }
