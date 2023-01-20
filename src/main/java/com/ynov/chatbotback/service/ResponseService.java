@@ -9,6 +9,7 @@ import com.ynov.chatbotback.repository.Step;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 @AllArgsConstructor
 @Service
@@ -28,7 +29,7 @@ public class ResponseService {
         String genre = (String) request.getQueryResult().getParameters().get("genre");
         Step step = Step.AFFICHAGE_RESULTAT;
 
-        if (genre == null) {
+        if (!StringUtils.hasText(genre)) {
             step = Step.GENRE_QUESTION;
         }
         List<String> messages = messageRepository.findAllByActionAndStep(request.getQueryResult().getAction(), step);
