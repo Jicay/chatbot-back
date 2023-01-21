@@ -2,6 +2,7 @@ package com.ynov.chatbotback.service;
 
 import com.ynov.chatbotback.model.request.WebhookRequest;
 import com.ynov.chatbotback.model.response.Message;
+import com.ynov.chatbotback.model.response.QuickReplies;
 import com.ynov.chatbotback.model.response.Text;
 import com.ynov.chatbotback.model.response.WebhookResponse;
 import com.ynov.chatbotback.repository.MessageRepository;
@@ -34,12 +35,22 @@ public class ResponseService {
         }
         List<String> messages = messageRepository.findAllByActionAndStep(request.getQueryResult().getAction(), step);
 
-        return new WebhookResponse()
-                .setFulfillmentText(messages.stream().findFirst().orElse(""))
-                .setFulfillmentMessages(
-                        List.of(new Message()
-                                .setText(new Text()
-                                        .setText(messages)))
-                );
+        if (step == Step.GENRE_QUESTION) {
+            return new WebhookResponse()
+                    .setFulfillmentText(messages.stream().findFirst().orElse(""))
+                    .setFulfillmentMessages(
+                            List.of(new Message()
+                                .setQuickReplies(new QuickReplies()
+                                    .setText(messages.stream().findFirst().orElse(""))
+                                    .setQuickReplies(List.of("Science-fiction", "Comédie", "Aventure", "Action")))));
+        } else {
+            return new WebhookResponse()
+                    .setFulfillmentText(messages.stream().findFirst().orElse(""))
+                    .setFulfillmentMessages(
+                            List.of(new Message()
+                                    .setText(new Text()
+                                            .setText(messages)))
+                    );
+        }
     }
 }

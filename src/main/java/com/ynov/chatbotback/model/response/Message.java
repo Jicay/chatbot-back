@@ -6,4 +6,5 @@ import lombok.Data;
 public class Message {
 
     private Text text;
+    private QuickReplies quickReplies;
 }
