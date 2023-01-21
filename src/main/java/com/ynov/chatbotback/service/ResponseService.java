@@ -81,7 +81,7 @@ public class ResponseService {
                                 .setBasicCard(new BasicCard()
                                         .setTitle(movie.getTitle())
                                         .setFormattedText(movie.getOverview())
-                                        .setSubtitle(movie.getReleaseDate().format(DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale.FRANCE)))
+                                        .setSubtitle("Sorti le " + movie.getReleaseDate().format(DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale.FRANCE)))
                                         .setImage(new Image().setImageUri(movie.getImageUrl()))
                                         .setButtons(List.of(new Button()
                                                 .setTitle("Voir sur The Movie DB")
