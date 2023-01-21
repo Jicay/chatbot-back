@@ -2,6 +2,7 @@ package com.ynov.chatbotback.service;
 
 import com.ynov.chatbotback.model.request.WebhookRequest;
 import com.ynov.chatbotback.model.response.Message;
+import com.ynov.chatbotback.model.response.Platform;
 import com.ynov.chatbotback.model.response.QuickReplies;
 import com.ynov.chatbotback.model.response.Text;
 import com.ynov.chatbotback.model.response.WebhookResponse;
@@ -37,9 +38,10 @@ public class ResponseService {
 
         if (step == Step.GENRE_QUESTION) {
             return new WebhookResponse()
-                   // .setFulfillmentText(messages.stream().findFirst().orElse(""))
+                    .setFulfillmentText(messages.stream().findFirst().orElse(""))
                     .setFulfillmentMessages(
                             List.of(new Message()
+                                .setPlatform(Platform.ACTIONS_ON_GOOGLE)
                                 .setQuickReplies(new QuickReplies()
                                     .setText(messages.stream().findFirst().orElse(""))
                                     .setQuickReplies(List.of("Science-fiction", "Comédie", "Aventure", "Action")))));
@@ -48,6 +50,7 @@ public class ResponseService {
                     .setFulfillmentText(messages.stream().findFirst().orElse(""))
                     .setFulfillmentMessages(
                             List.of(new Message()
+                                    .setPlatform(Platform.ACTIONS_ON_GOOGLE)
                                     .setText(new Text()
                                             .setText(messages)))
                     );
