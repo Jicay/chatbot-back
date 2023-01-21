@@ -37,7 +37,7 @@ public class ResponseService {
 
         if (step == Step.GENRE_QUESTION) {
             return new WebhookResponse()
-                    .setFulfillmentText(messages.stream().findFirst().orElse(""))
+                   // .setFulfillmentText(messages.stream().findFirst().orElse(""))
                     .setFulfillmentMessages(
                             List.of(new Message()
                                 .setQuickReplies(new QuickReplies()
