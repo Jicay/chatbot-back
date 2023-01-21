@@ -69,7 +69,14 @@ public class ResponseService {
         return new WebhookResponse()
                 .setFulfillmentText("Voici le détail")
                 .setFulfillmentMessages(
-                        List.of(new Message()
+                        List.of(
+                            new Message()
+                                    .setPlatform(Platform.ACTIONS_ON_GOOGLE)
+                                    .setSimpleResponses(new SimpleResponses()
+                                    .setSimpleResponses(List.of(
+                                        new SimpleResponse().setTextToSpeech("Voici les informations :")))),
+
+                        new Message()
                                 .setPlatform(Platform.ACTIONS_ON_GOOGLE)
                                 .setBasicCard(new BasicCard()
                                         .setTitle(movie.getTitle())
