@@ -25,6 +25,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
@@ -81,7 +82,7 @@ public class ResponseService {
                                 .setBasicCard(new BasicCard()
                                         .setTitle(movie.getTitle())
                                         .setFormattedText(movie.getOverview())
-                                        .setSubtitle(movie.getReleaseDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)))
+                                        .setSubtitle(movie.getReleaseDate().format(DateTimeFormatter.ofPattern("dd MMMM yyyy", Locale.FRANCE)))
                                         .setImage(new Image().setImageUri(movie.getImageUrl()))
                                         .setButtons(List.of(new Button()
                                                 .setTitle("Voir sur The Movie DB")
