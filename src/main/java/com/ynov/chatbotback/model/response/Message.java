@@ -11,4 +11,5 @@ public class Message {
     private Suggestions suggestions;
 
     private SimpleResponses simpleResponses;
+    private CarouselSelect carouselSelect;
 }
