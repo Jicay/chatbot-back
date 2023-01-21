@@ -8,5 +8,7 @@ public class Message {
     private Platform platform;
 
     private Text text;
-    private QuickReplies quickReplies;
+    private Suggestions suggestions;
+
+    private SimpleResponses simpleResponses;
 }
