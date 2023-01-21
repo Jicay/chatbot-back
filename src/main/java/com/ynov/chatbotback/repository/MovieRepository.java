@@ -6,12 +6,13 @@ import com.ynov.chatbotback.model.moviedb.MovieDBQueryResponse;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class MovieRepository {
 
     private static final Map<Genre, List<String>> movies = Map.of(
@@ -23,7 +24,10 @@ public class MovieRepository {
             Genre.COMEDIE, List.of("La Grande Vadrouille", "Kaamelott - Premier volet", "Shrek")
     );
 
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
+
+    @Value("${moviedb-key}")
+    private String apiKey;
 
     public List<Movie> findAllByGenre(Genre genre) {
         List<String> moviesName = movies.get(genre);

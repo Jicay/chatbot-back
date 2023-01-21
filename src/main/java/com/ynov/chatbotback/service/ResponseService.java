@@ -36,6 +36,14 @@ public class ResponseService {
         if (request.getQueryResult().getAction().equals("movie.advice")) {
             return computeAdvice(request);
         }
+        if (request.getQueryResult().getAction().equals("movie.advice.details")) {
+            return getDetails(request);
+        }
+        return null;
+    }
+
+    private WebhookResponse getDetails(WebhookRequest request) {
+
         return null;
     }
 
