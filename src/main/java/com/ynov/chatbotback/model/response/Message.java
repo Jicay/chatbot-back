@@ -12,4 +12,6 @@ public class Message {
 
     private SimpleResponses simpleResponses;
     private CarouselSelect carouselSelect;
+
+    private BasicCard basicCard;
 }

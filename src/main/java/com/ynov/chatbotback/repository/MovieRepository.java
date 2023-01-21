@@ -2,6 +2,7 @@ package com.ynov.chatbotback.repository;
 
 import com.ynov.chatbotback.model.Genre;
 import com.ynov.chatbotback.model.Movie;
+import com.ynov.chatbotback.model.moviedb.MovieDBDetailResponse;
 import com.ynov.chatbotback.model.moviedb.MovieDBQueryResponse;
 import java.util.List;
 import java.util.Map;
@@ -35,8 +36,19 @@ public class MovieRepository {
             return null;
         }
         return moviesName.stream().map(
-            it -> restTemplate.getForObject("https://api.themoviedb.org/3/search/movie?api_key=7996ca1b1e575167242fa0d3ea6f5ef1&query="+ it + "&language=fr", MovieDBQueryResponse.class).getResults().get(0)
+            it -> restTemplate.getForObject("https://api.themoviedb.org/3/search/movie?api_key=" + apiKey + "&query="+ it + "&language=fr", MovieDBQueryResponse.class).getResults().get(0)
         ).map(it -> new Movie().setId(it.getId()).setOverview(it.getOverview()).setTitle(it.getTitle()).setImageUrl("https://image.tmdb.org/t/p/w500" + it.getPosterPath()))
                 .collect(Collectors.toList());
+    }
+
+    public Movie findDetailById(String id) {
+        MovieDBDetailResponse movieDBDetailResponse = restTemplate.getForObject("https://api.themoviedb.org/3/movie/" + id + "?api_key=" + apiKey + "&language=fr", MovieDBDetailResponse.class);
+
+        return new Movie()
+                .setImageUrl("https://image.tmdb.org/t/p/w500" + movieDBDetailResponse.getPosterPath())
+                .setOverview(movieDBDetailResponse.getOverview())
+                .setId(movieDBDetailResponse.getId())
+                .setTitle(movieDBDetailResponse.getTitle())
+                .setReleaseDate(movieDBDetailResponse.getReleaseDate());
     }
 }
