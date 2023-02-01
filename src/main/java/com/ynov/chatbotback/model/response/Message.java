@@ -14,4 +14,6 @@ public class Message {
     private CarouselSelect carouselSelect;
 
     private BasicCard basicCard;
+
+    private TableCard tableCard;
 }

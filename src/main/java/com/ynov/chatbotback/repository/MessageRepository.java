@@ -12,6 +12,7 @@ public class MessageRepository {
             Step.ASK_GENRE, List.of("Très bien. Quel genre veux-tu voir ?"),
             Step.DISPLAY_FILM, List.of("OK, voici ce que je te propose :"),
             Step.DISPLAY_DETAIL, List.of("Voici le détail"),
+            Step.PLATFORM, List.of("Le film est disponible sur ces plateformes"),
             Step.DEFAULT, List.of("Je n'ai pas compris ce que tu demandes, peux-tu reformuler ?")
     );
 

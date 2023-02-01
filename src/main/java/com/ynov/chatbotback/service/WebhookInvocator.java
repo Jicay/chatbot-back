@@ -15,12 +15,14 @@ public class WebhookInvocator {
             AskGenreCommand askGenreCommand,
             DisplayFilmCommand displayFilmCommand,
             DisplayDetailCommand displayDetailCommand,
+            MoviePlatformCommand moviePlatformCommand,
             DefaultCommand defaultCommand
     ) {
         commands = Map.of(
                 Step.ASK_GENRE, askGenreCommand,
                 Step.DISPLAY_FILM, displayFilmCommand,
                 Step.DISPLAY_DETAIL, displayDetailCommand,
+                Step.PLATFORM, moviePlatformCommand,
                 Step.DEFAULT, defaultCommand
         );
     }
@@ -40,6 +42,7 @@ public class WebhookInvocator {
             }
             case "movie.advice.genre" -> step = Step.DISPLAY_FILM;
             case "movie.advice.details" -> step = Step.DISPLAY_DETAIL;
+            case "movie.platform" -> step = Step.PLATFORM;
         }
         return commands.get(step).execute(request);
     }

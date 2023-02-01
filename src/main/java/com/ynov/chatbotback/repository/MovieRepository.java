@@ -2,8 +2,11 @@ package com.ynov.chatbotback.repository;
 
 import com.ynov.chatbotback.model.Genre;
 import com.ynov.chatbotback.model.Movie;
+import com.ynov.chatbotback.model.MoviePlatform;
 import com.ynov.chatbotback.model.moviedb.MovieDBDetailResponse;
+import com.ynov.chatbotback.model.moviedb.MovieDBProviderResponse;
 import com.ynov.chatbotback.model.moviedb.MovieDBQueryResponse;
+import com.ynov.chatbotback.model.moviedb.PlatformCountry;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -50,5 +53,31 @@ public class MovieRepository {
                 .setId(movieDBDetailResponse.getId())
                 .setTitle(movieDBDetailResponse.getTitle())
                 .setReleaseDate(movieDBDetailResponse.getReleaseDate());
+    }
+
+    public MoviePlatform findPlatform(String movie) {
+        var m = restTemplate.getForObject("https://api.themoviedb.org/3/search/movie?api_key=" + apiKey + "&query="+ movie + "&language=fr", MovieDBQueryResponse.class).getResults().get(0);
+        var idMovie = m.getId();
+        var platforms = restTemplate.getForObject("https://api.themoviedb.org/3/movie/" + idMovie + "/watch/providers?api_key=" + apiKey + "&language=fr", MovieDBProviderResponse.class).getResults();
+
+        return new MoviePlatform()
+                .setTitle(m.getTitle())
+                .setImage("https://image.tmdb.org/t/p/w500" + m.getPosterPath())
+                .setPlatforms(Map.of(
+                        "France", getProviderName("FR", platforms),
+                        "Etats-Unis", getProviderName("US", platforms),
+                        "Belgique", getProviderName("BE", platforms),
+                        "Royaume-Uni", getProviderName("GB", platforms),
+                        "Japon", getProviderName("JP", platforms)
+                ));
+    }
+
+    private String getProviderName(String country, Map<String, PlatformCountry> platforms) {
+        var platformCountry = platforms.get(country);
+        if (platformCountry == null || platformCountry.getFlatrate() == null || platformCountry.getFlatrate().isEmpty()) {
+            return "Non disponible";
+        } else {
+            return platformCountry.getFlatrate().get(0).getProviderName();
+        }
     }
 }
