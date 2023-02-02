@@ -10,7 +10,6 @@ import com.ynov.chatbotback.model.response.SimpleResponse;
 import com.ynov.chatbotback.model.response.SimpleResponses;
 import com.ynov.chatbotback.model.response.Suggestion;
 import com.ynov.chatbotback.model.response.Suggestions;
-import com.ynov.chatbotback.model.response.Text;
 import com.ynov.chatbotback.model.response.WebhookResponse;
 import com.ynov.chatbotback.model.response.slack.Attachment;
 import com.ynov.chatbotback.model.response.slack.Block;
@@ -60,6 +59,7 @@ public class AskGenreCommand implements WebhookCommand {
                                                                 new Attachment()
                                                                         .setBlocks(List.of(
                                                                                 new Block()
+                                                                                        .setType(Block.ACTIONS)
                                                                                         .setElements(
                                                                                                 Arrays.stream(Genre.values())
                                                                                                         .map(it -> new Element()
