@@ -2,12 +2,11 @@ package com.ynov.chatbotback.model.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import java.util.List;
+import com.ynov.chatbotback.model.response.slack.SlackPayload;
 import lombok.Data;
 
 @Data
 @JsonInclude(Include.NON_NULL)
-public class QuickReplies {
-    private String text;
-    private List<String> quickReplies;
+public class Payload {
+    private SlackPayload slack;
 }

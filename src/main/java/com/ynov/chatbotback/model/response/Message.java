@@ -1,8 +1,11 @@
 package com.ynov.chatbotback.model.response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import lombok.Data;
 
 @Data
+@JsonInclude(Include.NON_NULL)
 public class Message {
 
     private Platform platform;
@@ -16,4 +19,6 @@ public class Message {
     private BasicCard basicCard;
 
     private TableCard tableCard;
+
+    private Payload payload;
 }
