@@ -101,8 +101,7 @@ public class DisplayFilmCommand implements WebhookCommand {
                     .setElements(List.of(new Element()
                             .setText(new TextButton()
                                     .setText(m.getTitle()))
-                            .setActionId(String.valueOf(m.getId()))
-                            .setValue("Action" + m.getId()))));
+                            .setValue("Movie " + m.getId()))));
         }
         blocks.add(new Block().setType(Block.DIVIDER));
 
