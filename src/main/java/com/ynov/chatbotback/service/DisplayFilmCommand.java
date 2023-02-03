@@ -37,8 +37,8 @@ public class DisplayFilmCommand implements WebhookCommand {
     private MovieRepository movieRepository;
 
     @Override
-    public WebhookResponse execute(WebhookRequest request) {
-        List<String> messages = messageRepository.findAllByActionAndStep(Step.DISPLAY_FILM);
+    public WebhookResponse execute(WebhookRequest request, Step step) {
+        List<String> messages = messageRepository.findAllByActionAndStep(step);
 
         String genreInput = (String) request.getQueryResult().getParameters().get("genre");
 

@@ -37,8 +37,8 @@ public class MoviePlatformCommand implements WebhookCommand {
     private MovieRepository movieRepository;
 
     @Override
-    public WebhookResponse execute(WebhookRequest request) {
-        List<String> messages = messageRepository.findAllByActionAndStep(Step.PLATFORM);
+    public WebhookResponse execute(WebhookRequest request, Step step) {
+        List<String> messages = messageRepository.findAllByActionAndStep(step);
 
         String movie = (String) request.getQueryResult().getParameters().get("movie");
         var platforms = movieRepository.findPlatform(movie);

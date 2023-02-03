@@ -31,8 +31,8 @@ public class AskGenreCommand implements WebhookCommand {
     private MessageRepository messageRepository;
 
     @Override
-    public WebhookResponse execute(WebhookRequest request) {
-        List<String> messages = messageRepository.findAllByActionAndStep(Step.ASK_GENRE);
+    public WebhookResponse execute(WebhookRequest request, Step step) {
+        List<String> messages = messageRepository.findAllByActionAndStep(step);
 
         return new WebhookResponse()
                 .setFulfillmentMessages(

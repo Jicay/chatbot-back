@@ -38,8 +38,8 @@ public class DisplayDetailCommand implements WebhookCommand {
     private MovieRepository movieRepository;
 
     @Override
-    public WebhookResponse execute(WebhookRequest request) {
-        List<String> messages = messageRepository.findAllByActionAndStep(Step.DISPLAY_DETAIL);
+    public WebhookResponse execute(WebhookRequest request, Step step) {
+        List<String> messages = messageRepository.findAllByActionAndStep(step);
 
         Optional<String> chosenOption = request.getQueryResult().getOutputContexts().stream()
                 .filter(it -> it.getName().endsWith("actions_intent_option"))

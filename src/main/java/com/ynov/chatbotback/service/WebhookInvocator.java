@@ -20,6 +20,7 @@ public class WebhookInvocator {
     ) {
         commands = Map.of(
                 Step.ASK_GENRE, askGenreCommand,
+                Step.ASK_GENRE_FALLBACK, askGenreCommand,
                 Step.DISPLAY_FILM, displayFilmCommand,
                 Step.DISPLAY_DETAIL, displayDetailCommand,
                 Step.PLATFORM, moviePlatformCommand,
@@ -40,10 +41,13 @@ public class WebhookInvocator {
                     step = Step.ASK_GENRE;
                 }
             }
+            case "movie.advice.fallback" -> {
+                step = Step.ASK_GENRE_FALLBACK;
+            }
             case "movie.advice.genre" -> step = Step.DISPLAY_FILM;
             case "movie.advice.details" -> step = Step.DISPLAY_DETAIL;
             case "movie.platform" -> step = Step.PLATFORM;
         }
-        return commands.get(step).execute(request);
+        return commands.get(step).execute(request, step);
     }
 }
