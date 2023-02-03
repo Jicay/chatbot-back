@@ -11,6 +11,7 @@ public class Element {
     private String type = "button";
     private TextButton text;
     private String value;
+    private String url;
     @JsonProperty("action_id")
     private String actionId;
 }
