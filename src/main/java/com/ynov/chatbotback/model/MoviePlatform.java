@@ -7,5 +7,5 @@ import lombok.Data;
 public class MoviePlatform {
     private String title;
     private String image;
-    private Map<String, String> platforms;
+    private Map<Country, String> platforms;
 }

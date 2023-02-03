@@ -1,5 +1,6 @@
 package com.ynov.chatbotback.repository;
 
+import com.ynov.chatbotback.model.Country;
 import com.ynov.chatbotback.model.Genre;
 import com.ynov.chatbotback.model.Movie;
 import com.ynov.chatbotback.model.MoviePlatform;
@@ -64,11 +65,11 @@ public class MovieRepository {
                 .setTitle(m.getTitle())
                 .setImage("https://image.tmdb.org/t/p/w500" + m.getPosterPath())
                 .setPlatforms(Map.of(
-                        "France", getProviderName("FR", platforms),
-                        "Etats-Unis", getProviderName("US", platforms),
-                        "Belgique", getProviderName("BE", platforms),
-                        "Royaume-Uni", getProviderName("GB", platforms),
-                        "Japon", getProviderName("JP", platforms)
+                        Country.FRANCE, getProviderName("FR", platforms),
+                        Country.USA, getProviderName("US", platforms),
+                        Country.BELGIQUE, getProviderName("BE", platforms),
+                        Country.ROYAUME_UNI, getProviderName("GB", platforms),
+                        Country.JAPON, getProviderName("JP", platforms)
                 ));
     }
 
