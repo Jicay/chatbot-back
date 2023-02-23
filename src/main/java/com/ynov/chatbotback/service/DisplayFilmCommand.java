@@ -11,6 +11,8 @@ import com.ynov.chatbotback.model.response.Message;
 import com.ynov.chatbotback.model.response.Payload;
 import com.ynov.chatbotback.model.response.Platform;
 import com.ynov.chatbotback.model.response.SelectItemInfo;
+import com.ynov.chatbotback.model.response.SimpleResponse;
+import com.ynov.chatbotback.model.response.SimpleResponses;
 import com.ynov.chatbotback.model.response.Text;
 import com.ynov.chatbotback.model.response.WebhookResponse;
 import com.ynov.chatbotback.model.response.slack.Accessory;
@@ -60,8 +62,9 @@ public class DisplayFilmCommand implements WebhookCommand {
                         List.of(
                                 new Message()
                                         .setPlatform(Platform.ACTIONS_ON_GOOGLE)
-                                        .setText(new Text()
-                                                .setText(messages)),
+                                        .setSimpleResponses(new SimpleResponses()
+                                                .setSimpleResponses(List.of(
+                                                        new SimpleResponse().setTextToSpeech(messages.stream().findFirst().orElse(""))))),
                                 new Message()
                                         .setPlatform(Platform.ACTIONS_ON_GOOGLE)
                                         .setCarouselSelect(new CarouselSelect()
