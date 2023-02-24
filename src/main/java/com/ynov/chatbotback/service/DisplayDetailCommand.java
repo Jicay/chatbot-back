@@ -43,7 +43,7 @@ public class DisplayDetailCommand implements WebhookCommand {
 
         Optional<String> chosenOption = request.getQueryResult().getOutputContexts().stream()
                 .filter(it -> it.getName().endsWith("actions_intent_option"))
-                .map(it -> it.getParameters().get("OPTION"))
+                .map(it -> it.getParameters().get("OPmovie.advice.detailsTION"))
                 .findFirst();
         String movieId = request.getQueryResult().getParameters().get("movieId").toString();
         if (chosenOption.isEmpty() && movieId == null) {
